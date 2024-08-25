@@ -1,0 +1,118 @@
+    /* Carousel 1/2 of screen */
+    
+    .carousel-item.active, .carousel-item .view {
+        height: 50vh!important;
+      }
+      .carousel-item.active, .carousel-item  {
+        height: 50vh!important;
+      }
+    
+      .carousel-item img {
+        object-fit: cover;
+        width:100%!important;
+        height: 100% !important;
+      }
+    
+      .content h1 {
+        font-size: 55px;
+      }
+      .content h5 {
+        font-size: 23px;
+        margin-left: 80px;
+        margin-right: 80px;
+      }
+    
+      /*MEDIA QUERIES RESPONSIVE DESIGN */
+    
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        /* Carousel 1/2 of screen */
+    
+    .carousel-item.active, .carousel-item .view {
+        height: 30vh!important;
+      }
+      .carousel-item.active, .carousel-item  {
+        height: 30vh!important;
+      }
+    
+      .carousel-item img {
+        object-fit: cover;
+        width:100%!important;
+        height: 100% !important;
+      }
+    } 
+    
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+            /* Carousel 1/2 of screen */
+    
+    .carousel-item.active, .carousel-item .view {
+        height: 30vh!important;
+      }
+      .carousel-item.active, .carousel-item  {
+        height: 30vh!important;
+      }
+    
+      .carousel-item img {
+        object-fit: cover;
+        width:100%!important;
+        height: 100% !important;
+      }
+    
+    } 
+    
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+    /* Carousel 1/2 of screen */
+    
+    .carousel-item.active, .carousel-item .view {
+        height: 30vh!important;
+      }
+      .carousel-item.active, .carousel-item  {
+        height: 30vh!important;
+      }
+    
+      .carousel-item img {
+        object-fit: cover;
+        width:100%!important;
+        height: 100% !important;
+      }
+    } 
+    
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+        /* Carousel 1/2 of screen */
+    
+    .carousel-item.active, .carousel-item .view {
+        height: 50vh!important;
+      }
+      .carousel-item.active, .carousel-item  {
+        height: 50vh!important;
+      }
+    
+      .carousel-item img {
+        object-fit: cover;
+        width:100%!important;
+        height: 100% !important;
+      }
+    
+    } 
+    
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        /* Carousel 1/2 of screen */
+    
+    .carousel-item.active, .carousel-item .view {
+        height: 50vh!important;
+      }
+      .carousel-item.active, .carousel-item  {
+        height: 50vh!important;
+      }
+    
+      .carousel-item img {
+        object-fit: cover;
+        width:100%!important;
+        height: 100% !important;
+      }
+    
+    }

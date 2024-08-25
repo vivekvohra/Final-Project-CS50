@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+            integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <title>iPlus Code</title>
+    </head>
+
+    <body>
+
+
+        <!--Navbar code-->
+
+        <!-- Image and text -->
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="/static/icodelogo.png" width="70" height="30" class="d-inline-block align-top" alt="">
+                iPlus Code
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Topics
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/blog1">CS50x</a>
+                            <a class="dropdown-item" href="#">Technology</a>
+                            <a class="dropdown-item" href="#">Competitive Programming</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Support and Follow</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/add">Add Post</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!--Carousel/slideshow-->
+
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/static/tower.bmp" class="d-block w-100" alt="Harvard">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>CS50x week-4 + PSet</h2>
+                        <button id="filter_more"></button>
+                        <button class="btn btn-danger" onclick="document.location='/blog1'">
+                            Filter(more)
+                        </button>
+                        <button class="btn btn-primary" onclick="document.location='/filter_c'"> filter.c</button>
+                        <button class="btn btn-success" onclick="document.location='/helper_c'"> helper.c</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/static/datascience.jpg" class="d-block w-100" alt="Harvard">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>CS50x week- 8</h2>
+                        <p> HTML, CSS, JavaScript and Bootstrap</p>
+                        <button class="btn btn-danger" onclick="document.location=''">Data Science</button>
+                        <button class="btn btn-primary" onclick="document.location=''"> Inheritance</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/static/stadium.bmp" class="d-block w-100" alt="Cs50">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>CS50x week-x</h2>
+                        <p> soon</p>
+                        <button class="btn btn-danger" onclick="document.location=''">soon</button>
+                        <button class="btn btn-primary" onclick="document.location=''"> soon</button>
+                        <button class="btn btn-success" onclick="document.location=''"> soon</button>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions"
+                data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions"
+                data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+
+        <!--Featured etc. cards-->
+        <div class="container my-4">
+            <div class="row mb-2">
+                <!--Card 1 static-->
+                <!--Fetch using for loop from database-->
+                <div class="col-md-6">
+                    <div
+                        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">PSet</strong>
+                            <h3 class="mb-0">CS50x week- 8 (3-part series)</h3>
+                            <div class="mb-1 text-muted">April 17</div>
+                            <p class="card-text mb-auto">This post aims to review the knowledge we learned this week
+                                regarding pixels (images) and apply it to understand and solve the 'Filter' problem in
+                                CS50
+                                Week 4, which is a more difficult version.</p>
+                            <a href="/blog1" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img class="bd-placeholder-img" width="200" height="250" src="/static/tower.bmp" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!--Card 2 static-->
+                <div class="col-md-6">
+                    <div
+                        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-success">PSet</strong>
+                            <h3 class="mb-0">CS50x week- 3 Tideman</h3>
+                            <div class="mb-1 text-muted">Feb 11</div>
+                            <p class="mb-auto">Tideman electoral system is a ranked-choice voting system developed by
+                                Nicolaus Tideman which selects a single winner using votes that express preferences.</p>
+                            <a href="/tideman" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img class="bd-placeholder-img" width="200" height="250"
+                                src="https://cs50.gallerycdn.vsassets.io/extensions/cs50/ddb50/1.1.2/1691002683906/Microsoft.VisualStudio.Services.Icons.Default"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+
+                {% for i in range(0, posts|length, 2) %}
+
+                <!--Card 1 repeat dynamic-->
+                <div class="col-md-6">
+                    <div
+                        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-danger">PSet</strong>
+                            <h3 class="mb-0">{{posts[i].title}}</h3>
+                            <div class="mb-1 text-muted">{{posts[i].date}}</div>
+                            <p class="card-text mb-auto">{{posts[i].content[0:100]}}...</p>
+                            <a href="/post/{{posts[i].slug}}" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img class="bd-placeholder-img" width="200" height="250" src="/static/datascience.jpg"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+                <!--Card 2 repeat dynamic-->
+                {% if i + 1 < posts|length %}
+                <div class="col-md-6">
+                    <div
+                        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-secondary">PSet</strong>
+                            <h3 class="mb-0">{{posts[i+1].title}}</h3>
+                            <div class="mb-1 text-muted">{{posts[i+1].date}}</div>
+                            <p class="mb-auto">{{posts[i+1].content[0:100]}}...</p>
+                            <a href="/post/{{posts[i+1].slug}}" class="stretched-link">Continue reading</a>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img class="bd-placeholder-img" width="200" height="250" src="/static/thisiscs50.png"
+                                alt="">
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <button type="button" class="btn btn-outline-secondary float-right">older</button>
+            </div>
+
+        </div>
+
+
+
+        <footer class="container">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>© 2024-2030 iPlus Code </p>
+        </footer>
+
+
+
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+            crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+    </body>
+
+</html>

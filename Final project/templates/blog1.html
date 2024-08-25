@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="styles.css">
+        <title>iPlus Code</title>
+    </head>
+
+    <body>
+
+
+        <!--Navbar code-->
+
+        <!-- Image and text -->
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="/static/icodelogo.png" width="70" height="30" class="d-inline-block align-top" alt="">
+                iPlus Code
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Topics
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/blog1">CS50x</a>
+                            <a class="dropdown-item" href="#">Technology</a>
+                            <a class="dropdown-item" href="#">Competitive Programming</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Support and Follow</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/add">Add Post</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!---->
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">CS50 week-4 Images + PSet: Filter(more)</h2>
+                        <p class="blog-post-meta">April 14, 2024 by <a href="#">Vivek</a></p>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary active" onclick="document.location='/blog1'">First</button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="document.location='/filter_c'">Second</button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="document.location='/helper_c'">Last</button>
+                        </div>
+
+                        <p class="has-line-data" data-line-start="0" data-line-end="1">This blog post is the first of a three-part series aims to review the
+                            knowledge we learned this week regarding pixels (images) and apply it to understand and solve
+                            the <strong>‘Filter’</strong> problem in CS50 Week 4, which is a more difficult version.</p>
+                        <h2 class="code-line" data-line-start=4 data-line-end=5><a id="Pixels_4"></a>Pixels</h2>
+                        <p class="has-line-data" data-line-start="5" data-line-end="6">Pixels are the basic building blocks
+                            of digital visuals and are arranged in a grid to form images, videos, text, or any visible thing
+                            on a computer screen.</p>
+                        <p class="has-line-data" data-line-start="7" data-line-end="11"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3grqds3czw2id1ek2l49.png" class="img-fluid" alt="Image description"><br>
+                            As we see in the picture above. The small squares or pixels are the building blocks of an
+                            image.<br>
+                            Each pixel has 3 bytes of information for Red, Blue, and Green ranging from 0x00 to 0xFF (255)
+                            i.e. 11111111 (8 bits in Binary).<br>
+                            So a total of 24 bits represents a pixel’s color.</p>
+                        <p class="has-line-data" data-line-start="13" data-line-end="14"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jsy3bedc4p9o5q1uzkmw.png" class="img-fluid" alt="Image description"></p>
+                        <ul>
+                            <li class="has-line-data" data-line-start="15" data-line-end="16"><code>0xffffff</code>
+                                signifies White</li>
+                            <li class="has-line-data" data-line-start="16" data-line-end="17"><code>0x000000</code>
+                                signifies Black</li>
+                            <li class="has-line-data" data-line-start="17" data-line-end="18">Now what does 0x prefix mean?
+                            </li>
+                            <li class="has-line-data" data-line-start="18" data-line-end="19">This turns out to be
+                                <em>another</em> base system known as <strong>Hexadecimal</strong>
+                            </li>
+                            <li class="has-line-data" data-line-start="19" data-line-end="21">This system follows base 16
+                                and they are:</li>
+                        </ul>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>0</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <p class="has-line-data" data-line-start="23" data-line-end="24">Now before moving forward, we will
+                            have a quick recap of Files.</p>
+                        <h2 class="code-line" data-line-start=25 data-line-end=26><a id="File_IO_25"></a>File I/O</h2>
+                        <p class="has-line-data" data-line-start="26" data-line-end="27">Now take a look at the code below;
+                            this code is to open a CSV file, which is somewhat similar to Excel and uses commas to separate
+                            values and newlines to separate records.</p>
+                        <pre><code class="has-line-data" data-line-start="30" data-line-end="48">    // Open CSV file
+                        FILE *file = fopen(&quot;phonebook.csv&quot;, &quot;a&quot;); //fopen gives us file pointer
+                        if (!file)                                //&quot;a&quot; - append;&quot;w&quot;-write;&quot;r&quot;-read
+                        {
+                            return 1;
+                        }
+
+                        // Get name and number
+                        char *name = get_string(&quot;Name: &quot;);
+                        char *number = get_string(&quot;Number: &quot;);
+
+                        // Print to file ~ to write
+                        fprintf(file, &quot;%s,%s\n&quot;, name, number);
+
+                        // Close file
+                        fclose(file);
+
+                    </code></pre>
+                        <ul>
+                            <li class="has-line-data" data-line-start="48" data-line-end="49">Notice that this code uses
+                                pointers to access the file.</li>
+                            <li class="has-line-data" data-line-start="49" data-line-end="50">You can create a file called
+                                <code>phonebook.csv</code> in advance of running the above code. After running the above
+                                program and inputting a name and phone number, you will notice that this data persists in
+                                your CSV file.
+                            </li>
+                            <li class="has-line-data" data-line-start="50" data-line-end="52">Notice that this program
+                                protects against a <code>NULL</code> pointer by invoking <code>return 1</code>.</li>
+                        </ul>
+                        <h2 class="code-line" data-line-start=52 data-line-end=53><a id="Other_important_functions_52"></a>Other important functions:</h2>
+                        <h3 class="code-line" data-line-start=53 data-line-end=54><a id="fread_53"></a>fread</h3>
+                        <p class="has-line-data" data-line-start="54" data-line-end="55"><strong>fread(&amp;b, sizeof(b), 1,
+                            src):</strong></p>
+                        <ul>
+                            <li class="has-line-data" data-line-start="55" data-line-end="56">&amp;b → is the buffer
+                                variable (to where we read into)</li>
+                            <li class="has-line-data" data-line-start="56" data-line-end="57">src → pointer(from where we
+                                read from)</li>
+                            <li class="has-line-data" data-line-start="57" data-line-end="58">sizeof(b) → how big the
+                                building piece of data is (img → pixel;text →char)</li>
+                            <li class="has-line-data" data-line-start="58" data-line-end="60">1→ How many of these chunks
+                                should be read at a time.<strong>It returns the number of blocks it read.</strong></li>
+                        </ul>
+                        <h3 class="code-line" data-line-start=60 data-line-end=61><a id="fwrite_60"></a>fwrite</h3>
+                        <p class="has-line-data" data-line-start="61" data-line-end="62"><strong>fwrite(&amp;b, sizeof(b),
+                            1, dst):</strong></p>
+                        <ul>
+                            <li class="has-line-data" data-line-start="62" data-line-end="63">&amp;b → is buffer variable
+                                (to where we write from)</li>
+                            <li class="has-line-data" data-line-start="63" data-line-end="64">dst → pointer(from where we
+                                write into)</li>
+                            <li class="has-line-data" data-line-start="64" data-line-end="65">sizeof(b) → how big the
+                                building piece of data is (img → pixel;text →char)</li>
+                            <li class="has-line-data" data-line-start="65" data-line-end="66">1→ how many of these chunks
+                                should be read at a time.</li>
+                            <li class="has-line-data" data-line-start="66" data-line-end="68"><strong>EOF - end of file
+                                character</strong></li>
+                        </ul>
+                        <h2 class="code-line" data-line-start=68 data-line-end=69><a id="BMPBitmap_Image_file_68"></a>BMP(Bitmap Image file)</h2>
+                        <ul>
+                            <li class="has-line-data" data-line-start="69" data-line-end="70">Every file type has its unique
+                                signature at the beginning which tells us the file type. eg: pdf has a 4-byte sequence i.e.
+                                37;80;68;70.</li>
+                            <li class="has-line-data" data-line-start="70" data-line-end="72">A <strong>24-bit BMP</strong>
+                                file, then, is essentially just a sequence of bits, (almost) every 24 of which happen to
+                                represent some pixel’s color. However, BMP stores these triples backwards (i.e., as BGR),
+                                with 8 bits for blue, followed by 8 bits for green, followed by 8 bits for red.<br>
+                                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1ai7e95ov8nfmiq91dh2.png" class="img-fluid" alt="Image description">
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="has-line-data" data-line-start="74" data-line-end="75"><strong>BMP</strong> file also
+                                contains some <strong>metadata</strong>, information like an image’s height and width. That
+                                metadata is stored at the beginning of the file in the form of two data structures generally
+                                referred to as <strong>headers</strong>.</li>
+                            <li class="has-line-data" data-line-start="75" data-line-end="76">Now when we open the file
+                                provided to us as a distribution code.</li>
+                        </ul>
+                        <h2 class="code-line" data-line-start=76 data-line-end=77><a id="BMPh_76"></a>BMP.h</h2>
+                        <ul>
+                            <li class="has-line-data" data-line-start="77" data-line-end="78">This file stores the
+                                information about Bitmap <a href="http://images.It">images.It</a> defines the Structure to
+                                create a bitmap image.</li>
+                        </ul>
+                        <h4 class="code-line" data-line-start=78 data-line-end=79><a id="BITMAPFILEHEADER_78"></a>BITMAPFILEHEADER</h4>
+                        <ul>
+                            <li class="has-line-data" data-line-start="79" data-line-end="80">It is the first of the headers
+                                and is 14 bytes long, and it stores the information about the type, size, and layout of a
+                                file (structure as defined by the creator of BMP).</li>
+                        </ul>
+                        <h4 class="code-line" data-line-start=80 data-line-end=81><a id="BITMAPINFOHEADER_80"></a>BITMAPINFOHEADER</h4>
+                        <ul>
+                            <li class="has-line-data" data-line-start="81" data-line-end="82">The second of these headers,
+                                and is 40 bytes long. It stores information about the dimensions and color format.</li>
+                            <li class="has-line-data" data-line-start="82" data-line-end="83">It is immediately followed by
+                                the actual bitmap.</li>
+                        </ul>
+                        <h4 class="code-line" data-line-start=83 data-line-end=84><a id="RGBTRIPLE_83"></a>RGBTRIPLE</h4>
+                        <ul>
+                            <li class="has-line-data" data-line-start="84" data-line-end="86">This structure describes a
+                                color consisting of relative intensities of red, green, and blue.</li>
+                        </ul>
+                        <pre><code class="has-line-data" data-line-start="87" data-line-end="95">typedef struct
+                    {
+                        BYTE  rgbtBlue;
+                        BYTE  rgbtGreen;
+                        BYTE  rgbtRed;
+                    } __attribute__((__packed__))
+                    RGBTRIPLE;
+                    </code></pre>
+                        <h2 class="code-line" data-line-start=96 data-line-end=97><a id="helpersh_96"></a>helpers.h</h2>
+                        <p class="has-line-data" data-line-start="97" data-line-end="98">It just provides the function
+                            prototypes for the functions we have to write.</p>
+                        <p class="has-line-data" data-line-start="99" data-line-end="100">Here each function takes a 2D
+                            array called image as an argument, where the image is an array[height, width] i.e. (n,m). So if
+                            the image represents the whole picture, then image[0] represents the first row, and image[0][0]
+                            represents the pixel in the upper-left corner of the image.</p>
+                        <h2 class="code-line" data-line-start=101 data-line-end=102><a id="Makefile_101"></a>Makefile</h2>
+                        <p class="has-line-data" data-line-start="102" data-line-end="103">This file specifies what should
+                            happen when we run a terminal command like :</p>
+                        <ul>
+                            <li class="has-line-data" data-line-start="103" data-line-end="104">make filter</li>
+                            <li class="has-line-data" data-line-start="104" data-line-end="105">As filter.c seems to use
+                                multiple files like <code>filter.c</code> and <code>helpers.c</code>. So we’ll need to tell
+                                <code>make</code> how to compile this file.
+                            </li>
+                            <li class="has-line-data" data-line-start="105" data-line-end="107"><strong>Remember</strong>,
+                                we should compile filter.c, not helpers.c.</li>
+                        </ul>
+                        <p class="has-line-data" data-line-start="107" data-line-end="108">And the main chunk in our code :
+                        </p>
+                        <h2 class="code-line" data-line-start=108 data-line-end=109><a id="helperc_108"></a>helper.c</h2>
+                        <p class="has-line-data" data-line-start="109" data-line-end="110">Here’s where the implementation
+                            of the functions declared in helpers.h belong. This is the part that we actually have to code.
+                        </p>
+                        <h2 class="code-line" data-line-start=112 data-line-end=113><a id="filterc_112"></a>filter.c</h2>
+                        <p class="has-line-data" data-line-start="113" data-line-end="114">It is the main program that
+                            applies image filters to bitmap files. It uses functions defined in helper and bmp defined in
+                            BMP.h to apply the filters.</p>
+                        <hr>
+                        <p class="has-line-data" data-line-start="117" data-line-end="118">Join me in my next blog post for
+                            an in-depth explanation of helper.c and filter.c files. See you there! In the meantime continue
+                            to code with passion. 🚀</p>
+                        <p class="has-line-data" data-line-start="119" data-line-end="120">As this is my debut blog post,
+                            I’m eager to learn and improve. Should you spot any errors, I warmly welcome your insights in
+                            the comments below. Your feedback is invaluable to me.</p>
+                        <p class="has-line-data" data-line-start="121" data-line-end="123">My code:<br>
+                            <a href="https://github.com/vivekvohra/filter">github.com/vivekvohra/filter</a>
+                        </p>
+                    </div><!-- /.blog-post -->
+
+                    <nav class="blog-pagination">
+                        <a class="btn btn-outline-secondary" href="#">Previous</a>
+                        <a class="btn btn-outline-primary" href="/filter_c">Next</a>
+                    </nav>
+
+                </div><!-- /.blog-main -->
+
+                <aside class="col-md-4 blog-sidebar">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="font-italic">About</h4>
+                        <p class="mb-0">I am a pre-final year student at TIET. I am passionate about using technology to
+                            solve real-world problems. I have experience programming in Python and C++.</p>
+                        <p><strong>Location</strong> : India</p>
+                        <p><strong>Education</strong> : TIET</p>
+                        <p><strong>Pronouns</strong> : He/Him</p>
+                        <p><strong>Email</strong> : vivekvohra1102@gmail.com</p>
+                        <p><strong>Date</strong> : May, 2024</p>
+
+
+
+
+
+
+                    </div>
+
+
+                    <div class="p-4">
+                        <h4 class="font-italic">Follow me</h4>
+                        <ol class="list-unstyled">
+                            <li><a href="https://github.com/vivekvohra" target="_balnk">GitHub</a></li>
+                            <li><a href="https://x.com/VivekVohra1102" target="_balnk">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/vivek-vohra-11316a24a/" target="_balnk">Linkedin</a></li>
+                            <li><a href="https://codeforces.com/profile/vvk_1102" target="_balnk">Codeforces</a></li>
+                            <li><a href="https://leetcode.com/u/vivekvohra/" target="_balnk">Leetcode</a></li>
+                            <li><a href="https://dev.to/vivekvohra" target="_balnk">Dev</a></li>
+                        </ol>
+                    </div>
+                </aside><!-- /.blog-sidebar -->
+
+            </div><!-- /.row -->
+
+        </main>
+
+
+
+
+        <!-- footer -->
+        <footer class="container">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>© 2024-2030 iPlus Code </p>
+        </footer>
+
+
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+    </body>
+
+</html>

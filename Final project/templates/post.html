@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2 class="blog-post-title">{{post.title}}</h2>
+<p class="blog-post-meta">{{post.date}} by <a href="#">Vivek</a></p>
+<div>
+    <p class="has-line-data" data-line-start="0" data-line-end="1">
+        {{post.content}}
+    </p>
+</div>
+{% endblock %}

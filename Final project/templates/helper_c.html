@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="styles.css">
+        <title>iPlus Code</title>
+    </head>
+
+    <body>
+
+
+        <!--Navbar code-->
+
+        <!-- Image and text -->
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="/static/icodelogo.png" width="70" height="30" class="d-inline-block align-top" alt="">
+                iPlus Code
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Topics
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/blog1">CS50x</a>
+                            <a class="dropdown-item" href="#">Technology</a>
+                            <a class="dropdown-item" href="#">Competitive Programming</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Support and Follow</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/add">Add Post</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!---->
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">CS50 PSet Filter(more) : helper.c</h2>
+                        <p class="blog-post-meta">April 14, 2024 by <a href="#">Vivek</a></p>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary " onclick="document.location='/blog1'">First</button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="document.location='/filter_c'">Second</button>
+                            <button type="button" class="btn btn-outline-secondary active" onclick="document.location='/helper_c'">Last</button>
+                        </div>
+
+                        <p class="has-line-data" data-line-start="0" data-line-end="3">In this post, we continue our series
+                            with a more detailed look at the helper.c file, while breaking down its key components and
+                            functionality.<br>
+                            <strong>helpers.c</strong> is a file where we implement helper functions that are used by the
+                            main program i.e. filter.c<br>
+                            This is the part where we have to write the series of functions in C that apply various image
+                            filters to bmp inputs.
+                        </p>
+                        <p class="has-line-data" data-line-start="4" data-line-end="5"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3mrq2kk7kno6oxisioo.png" class="img-fluid" alt="Image description"></p>
+                        <h3 class="code-line" data-line-start=5 data-line-end=6><a id="Image_Filtering_5"></a>Image
+                            Filtering</h3>
+                        <p class="has-line-data" data-line-start="6" data-line-end="8">What does it even mean to filter an
+                            image? We can think of filtering an image as taking the pixels of some original image and
+                            modifying each pixel in such a way that a particular effect is apparent in the resulting
+                            image.<br>
+                            Here we have to code the following filter:</p>
+                        <ul>
+                            <li class="has-line-data" data-line-start="9" data-line-end="11">
+                                <p class="has-line-data" data-line-start="9" data-line-end="10"><strong>Grayscale</strong>
+                                    function takes an image and turns it into a black-and-white version of the same image.
+                                </p>
+                            </li>
+                            <li class="has-line-data" data-line-start="11" data-line-end="13">
+                                <p class="has-line-data" data-line-start="11" data-line-end="12"><strong>Reflect</strong>
+                                    function takes an image and reflects it horizontally.</p>
+                            </li>
+                            <li class="has-line-data" data-line-start="13" data-line-end="15">
+                                <p class="has-line-data" data-line-start="13" data-line-end="14"><strong>Blur</strong>
+                                    function takes an image and turns it into a box-blurred version of the same image.</p>
+                            </li>
+                            <li class="has-line-data" data-line-start="15" data-line-end="17">
+                                <p class="has-line-data" data-line-start="15" data-line-end="16"><strong>Edge</strong>
+                                    function takes an image and highlights the edges between objects, according to the Sobel
+                                    operator.</p>
+                            </li>
+                        </ul>
+                        <pre><code class="has-line-data" data-line-start="18" data-line-end="20">void grayscale(int height, int width, RGBTRIPLE image[height][width])
+                        </code></pre>
+                        <h3 class="code-line" data-line-start=20 data-line-end=21><a id="Grayscale_20"></a>Grayscale:</h3>
+                        <p class="has-line-data" data-line-start="22" data-line-end="23">This function takes an image and
+                            converts it into a black-and-white version of the same image. This is done by taking an average
+                            of the <strong>RGB</strong> values of each pixel and setting them all equal to the average.</p>
+                        <p class="has-line-data" data-line-start="24" data-line-end="25">This is because as long as the
+                            <strong>RGB</strong> values are <strong>all equal</strong>, the result will be varying shades of
+                            gray along the black-white spectrum, with higher values meaning lighter shades (closer to white)
+                            and lower values meaning darker shades (closer to black).
+                        </p>
+                        <p class="has-line-data" data-line-start="26" data-line-end="27">To ensure each pixel of the new
+                            image still has the same general brightness or darkness as the old image, we can take the
+                            average of the red, green, and blue values to determine what shade of grey to make the new
+                            pixel.</p>
+                        <h3 class="code-line" data-line-start=28 data-line-end=29><a id="Reflect_28"></a>Reflect:</h3>
+                        <p class="has-line-data" data-line-start="30" data-line-end="31">This function flips an image about
+                            the vertical axis, which returns a mirror image.</p>
+                        <p class="has-line-data" data-line-start="32" data-line-end="33"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zdx2946a1ivhed4sieur.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="35" data-line-end="36">As a pixel is just a block in color
+                            in its essence, we don’t have to mirror it, we only have to swap them. So any pixels on the left
+                            side of the image should end up on the right, and vice versa.</p>
+                        <h2 class="code-line" data-line-start=37 data-line-end=38><a id="Blur_37"></a>Blur:</h2>
+                        <p class="has-line-data" data-line-start="39" data-line-end="40">Things get a bit trickier here. The
+                            purpose here is to return a blurred version of the input image. We do this by implementing the
+                            <strong>“box blur,”</strong> which works by taking each pixel and, for each color value, giving
+                            it a new value by averaging the color values of neighboring pixels.
+                        </p>
+                        <p class="has-line-data" data-line-start="41" data-line-end="42"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wsue5iims02owp4ew58m.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="44" data-line-end="45"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9h83v410ziyxkc80j0wu.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="47" data-line-end="48">The color values for pixel 11 would
+                            be obtained by averaging the color values of pixels 6, 7, 8, 10, 11, 12, 14, 15, and 16 of the
+                            original picture.</p>
+                        <p class="has-line-data" data-line-start="49" data-line-end="50">And for a pixel along the edge or
+                            corner, like pixel 15, pixels 10, 11, 12, 14, 15, and 16 will be taken for average.</p>
+                        <h4 class="code-line" data-line-start=51 data-line-end=52><a id="How_to_implement_it_in_code_51"></a>How to implement it in code?</h4>
+                        <pre><code class="has-line-data" data-line-start="54" data-line-end="64">    // Create temp array as we require original values
+                            RGBTRIPLE temp[height][width];
+                            for (int i = 0; i &lt; height; i++)
+                            {
+                                for (int j = 0; j &lt; width; j++)
+                                {
+                                    temp[i][j] = image[i][j];
+                                }
+                            }
+                        </code></pre>
+                        <p class="has-line-data" data-line-start="64" data-line-end="65">First, we have to create a
+                            temporary array where we duplicate the image into a separate array of RGBTRIPLEs. This is
+                            required as we require the original surrounding pixels at all times to calculate the averages,
+                            which will be removed from the original image once we start blurring.</p>
+                        <pre><code class="has-line-data" data-line-start="67" data-line-end="101">    for (int i = 0; i &lt; height; i++)
+                            {
+                                for (int j = 0; j &lt; width; j++)
+                                {
+                                    // Initialise values for each i,j pixel
+                                    float sum_red;
+                                    float sum_blue;
+                                    float sum_green;
+                                    int counter; // to count no. of surr. pixels
+                                    sum_red = sum_blue = sum_green = counter = 0;
+
+                                    for (int k = i - 1; j &lt;= i + 1; k++)  // for surrounding pixels
+                                    {
+                                        for (int l = j - 1; l &lt;= j + 1; l++)
+                                        {
+                                            if (k &gt;= 0 &amp;&amp; l &gt;= 0 &amp;&amp; k &lt; height &amp;&amp; l &lt; width)
+                                            { // if that ipixel is in image
+
+                                                sum_red += temp[k][l].rgbtRed;
+                                                sum_blue += temp[k][l].rgbtBlue;
+                                                sum_green += temp[k][l].rgbtGreen;
+                                                counter++;
+                                            }
+                                        }
+                                    }
+                                    // take average
+                                    image[i][j].rgbtRed = round(sum_red / counter);
+                                    image[i][j].rgbtGreen = round(sum_green / counter);
+                                    image[i][j].rgbtBlue = round(sum_blue / counter);
+                                }
+                            }
+                            return;
+
+                        </code></pre>
+                        <p class="has-line-data" data-line-start="101" data-line-end="102">To determine the existence of
+                            adjacent pixels, we iterate through the pixels above and below, as well as to the left and
+                            right, utilizing the variables <strong>k</strong> and <strong>l</strong> respectively. Should
+                            <strong>k</strong> fall outside the bounds of 0 and the image’s height, it indicates that the
+                            pixel doesn’t exist, allowing us to skip it. The same logic is applied to <strong>l</strong> in
+                            relation to the image’s width.
+                        </p>
+                        <p class="has-line-data" data-line-start="103" data-line-end="104">Finally, we calculate the average
+                            for each pixel and set the original pixel values equal to this average, thereby producing the
+                            desired blurring effect.</p>
+                        <h2 class="code-line" data-line-start=105 data-line-end=106><a id="Edge_105"></a>Edge:</h2>
+                        <p class="has-line-data" data-line-start="107" data-line-end="108">In artificial intelligence
+                            algorithms for image processing, it is often useful to detect edges in an image: lines in the
+                            image that create a boundary between one object and another. One way to achieve this effect is
+                            by applying the <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel operator</a> to the
+                            image.</p>
+                        <p class="has-line-data" data-line-start="109" data-line-end="110">Sobel Operator uses two 3×3
+                            kernels which are <a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)#Convolution">convolved</a>
+                            with the original image.</p>
+                        <h3 class="code-line" data-line-start=111 data-line-end=112><a id="CONVOLUTION_111"></a>CONVOLUTION
+                        </h3>
+                        <p class="has-line-data" data-line-start="112" data-line-end="113">CONVOLUTION is a mathematical
+                            operator “*”.Graphically, it expresses how the ‘shape’ of one function is modified by the other.
+                        </p>
+                        <h4 class="code-line" data-line-start=114 data-line-end=115><a id="It_is_applicable_only_to_Linear_Time_Invariant_Systems_114"></a>It is applicable only to
+                            Linear Time Invariant Systems.</h4>
+                        <p class="has-line-data" data-line-start="115" data-line-end="116">(can skip this part)</p>
+                        <p class="has-line-data" data-line-start="117" data-line-end="118"><strong>Time Invariant</strong>:
+                            systems where a shift in input results in an identical shift in <a href="http://output.eg">output.eg</a>:</p>
+                        <p class="has-line-data" data-line-start="119" data-line-end="120"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/klb8gq9lmqnnz5flf4hh.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="122" data-line-end="123">**Linear: **In simple terms it is
+                            a graph between output and input which must be a straight line through the origin without having
+                            saturation or dead time.</p>
+                        <p class="has-line-data" data-line-start="124" data-line-end="126"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/48733gqnelv059yhb65e.png" class="img-fluid" alt="Image description"><br>
+                            For discrete systems, the formula is :</p>
+                        <p class="has-line-data" data-line-start="129" data-line-end="130"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lrbd8ulp5vlypf9z3dvu.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="133" data-line-end="134"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yb2uw5xhpold5wv4rcjd.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="135" data-line-end="136">
+                            <code>https://youtu.be/QmcoPYUfbJ8?si=2CCf64_x9fGl7jx5</code>
+                        </p>
+                        <p class="has-line-data" data-line-start="137" data-line-end="138">In this video, we understand
+                            convolution using a great analogy. Suppose we want to find how much smoke burning several
+                            matchsticks produce. Here we take a time frame of 5 minutes. Let’s define 2 functions:</p>
+                        <p class="has-line-data" data-line-start="139" data-line-end="141"><strong>Smoke function:
+                            S(t)</strong> - It describes the amount of smoke produced by a single matchstick across
+                            time. It might be an exponential decay graph.<br>
+                            <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3vdllf4tp6wv0bl191m.png" class="img-fluid" alt="Image description">
+                        </p>
+                        <p class="has-line-data" data-line-start="142" data-line-end="144"><strong>Firework function:
+                            F(t)</strong>- It describes the number of matchsticks lit per minute.<br>
+                            Let it be a linear function. y = x</p>
+                        <ul>
+                            <li class="has-line-data" data-line-start="144" data-line-end="145">t=0 1 match was lit</li>
+                            <li class="has-line-data" data-line-start="145" data-line-end="148">t=2 2 matches were lit:
+                                <strong>total smoke</strong> = smoke from 2 sticks at present = 2<em>S(0) (because for
+                                    matchsticks at this time they just started burning) + smoke of prev. 1 stick after 1
+                                    sec. of burning = 1</em>S(1).<br>
+                                <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sfxxu30tim88q2mkzm2o.png" class="img-fluid" alt="Image description">
+                            </li>
+                        </ul>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>at minute 0</th>
+                                    <th>1*S(0)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>at minute 1</td>
+                                    <td>2<em>S(0)+ 1</em>S(1)</td>
+                                </tr>
+                                <tr>
+                                    <td>at minute 2</td>
+                                    <td>3*S(0) + prev(t + 1)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="has-line-data" data-line-start="153" data-line-end="154">Thus we can conclude that it
+                            indeed follows the above equation.</p>
+                        <h4 class="code-line" data-line-start=155 data-line-end=156><a id="We_can_visualize_convolution_as_a_sliding_window_155"></a>We can visualize convolution
+                            as a sliding window:</h4>
+                        <p class="has-line-data" data-line-start="157" data-line-end="158"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/em6tiixuo9x5tj8e8pfb.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="159" data-line-end="160"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s3zc60y8lvopj06kod2c.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="161" data-line-end="162"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/iecqe02361zn3p8rszbq.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="163" data-line-end="164"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nhq8t3fnlbm139wk4p22.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="165" data-line-end="166">Now if are 1st function is very
+                            large as compared to our 2nd function</p>
+                        <p class="has-line-data" data-line-start="167" data-line-end="168">Our visualization will be
+                            somewhat like this:</p>
+                        <p class="has-line-data" data-line-start="170" data-line-end="171"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lv8wouzayxyesn3tlwub.png" class="img-fluid" alt="Image description"></p>
+                        <h3 class="code-line" data-line-start=172 data-line-end=173><a id="In_2D_versionImage_processing_172"></a>In 2-D version(Image processing)</h3>
+                        <p class="has-line-data" data-line-start="173" data-line-end="174"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b6lcbxu908bk3m0pd8er.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="175" data-line-end="176">In the 2-D function, we can solve
+                            this Matrix convolution at (2,2) by flipping and multiplying.</p>
+                        <p class="has-line-data" data-line-start="177" data-line-end="178">i.e. =
+                            (i<em>1)+(h</em>2)+(g<em>3)+(f</em>4)+ (e<em>5) + (d</em>6) + (c<em>7) + (b</em>8) + (a*9)</p>
+                        <p class="has-line-data" data-line-start="179" data-line-end="180">In Image Processing, the 2nd
+                            function is known as Kernel which is in this case 3x3 matrix</p>
+                        <p class="has-line-data" data-line-start="181" data-line-end="182">[1/9, 1/9, 1/9],</p>
+                        <p class="has-line-data" data-line-start="183" data-line-end="184">[1/9, 1/9, 1/9],</p>
+                        <p class="has-line-data" data-line-start="185" data-line-end="186">[1/9, 1/9, 1/9]</p>
+                        <p class="has-line-data" data-line-start="187" data-line-end="189">We could have solved our Blur
+                            function by taking our 2nd function such that it sum of all nodes is 1 and then doing the
+                            convolution. (Remember while multiplying we have to flip the Matrix!!).<br>
+                            ###Edge Detection</p>
+                        <p class="has-line-data" data-line-start="190" data-line-end="192"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6mz80c1vbo0d5zhi60wj.png" class="img-fluid" alt="Image description"><br>
+                            Here the Kernels for convolution are Gx and Gy for respective cases:</p>
+                        <p class="has-line-data" data-line-start="193" data-line-end="194">Gx → For vertical edge detection
+                            or edges in the x direction</p>
+                        <p class="has-line-data" data-line-start="195" data-line-end="196">Gy → For horizontal edge
+                            detection or edges in the y direction</p>
+                        <p class="has-line-data" data-line-start="197" data-line-end="199"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nxln4td55wixmo0xbc52.png" class="img-fluid" alt="Image description"><br>
+                            For each of the three color values for each pixel, we’ll compute two values Gx and Gy. To
+                            compute Gx for the red channel value of a pixel, for instance, we’ll take the original red
+                            values for the nine pixels that form a 3x3 box around the pixel, multiply them each by the
+                            corresponding value in the Gx kernel, and take the sum of the resulting values.</p>
+                        <p class="has-line-data" data-line-start="200" data-line-end="201"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6h8uirc5pgdz2gxjdngd.png" class="img-fluid" alt="Image description"></p>
+                        <p class="has-line-data" data-line-start="202" data-line-end="203">For Example <strong>Gx</strong>:
+                            We’re multiplying the pixels to the right of the target pixel by a positive number, and
+                            multiplying the pixels to the left of the target pixel by a negative number. If the sum is close
+                            to zero this implies that the values cancel out and thus the colors on both sides are similar.
+                        </p>
+                        <p class="has-line-data" data-line-start="204" data-line-end="205">But if the pixels on the right
+                            are very different from the pixels on the left, then the resulting value will be very positive
+                            or very negative, indicating a color change that likely is the result of a boundary between
+                            objects.</p>
+                        <p class="has-line-data" data-line-start="206" data-line-end="207">In the case of edge cases, treat
+                            any pixels past the border as 0 or black. This will effectively ignore those pixels from our
+                            calculations of <code>Gx</code> and <code>Gy</code>.</p>
+                        <p class="has-line-data" data-line-start="208" data-line-end="209">To find the RGB value of the new
+                            pixel, we combine the Gx and Gy using the Sobel filter algorithm i.e.</p>
+                        <p class="has-line-data" data-line-start="210" data-line-end="211"><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/4zp2jbaaplhge8ja7ow3.png" class="img-fluid" alt="Image description"></p>
+                        <h4 class="code-line" data-line-start=212 data-line-end=213><a id="Code_Implementation_212"></a>Code
+                            Implementation</h4>
+                        <p class="has-line-data" data-line-start="214" data-line-end="215">It is similar to Blur; with the
+                            main difference in operation i.e:</p>
+                        <pre><code class="has-line-data" data-line-start="217" data-line-end="219" class="language-c">Gx_red += temp[k][l].rgbtRed * Gx[k -i + <span class="hljs-number">1</span>][l -j + <span class="hljs-number">1</span>];
+                        </code></pre>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>(1,1)</th>
+                                    <th>(1,2)</th>
+                                    <th>(1,3)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>(2,1)</td>
+                                    <td>(2,2)</td>
+                                    <td>(2,3)</td>
+                                </tr>
+                                <tr>
+                                    <td>(3,1)</td>
+                                    <td>(3,2)</td>
+                                    <td>(3,2)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="has-line-data" data-line-start="225" data-line-end="226">Thus at top leftmost: (1,1) ⇒ k=
+                            1 and i =2 value of [k -i + 1] is 0</p>
+                        <p class="has-line-data" data-line-start="227" data-line-end="228">So it iterates from 0 to 2.</p>
+                        <p class="has-line-data" data-line-start="229" data-line-end="230">Also if the value of G from is
+                            more than the limit i.e. 255. Then we assign it the maximum value possible i.e. 255.</p>
+                        <pre><code class="has-line-data" data-line-start="231" data-line-end="237" class="language-c">            <span class="hljs-comment">// if the value is above the limit; assg. it maxm possible</span>
+                                    <span class="hljs-keyword">if</span> (red &gt; <span class="hljs-number">255</span>)
+                                    {
+                                        red = <span class="hljs-number">255</span>;
+                                    }
+                        </code></pre>
+                        <p class="has-line-data" data-line-start="238" data-line-end="239">With this, we end our 3 part
+                            series. We learned what is an image(especially bmp) its structure and how it’s defined. We
+                            looked through various files (BMP.h,helpers.h, Makefile, filter.c etc.) provided to us and
+                            understood about underlying code and its functionality. Finally, we got to know about filters,
+                            the theory behind them, and how to implement them.</p>
+                        <hr>
+                        <p class="has-line-data" data-line-start="241" data-line-end="242">And so we conclude this series
+                            here. How you learned something new.Until we meet again! In the meantime continue to code with
+                            passion. 🚀</p>
+                        <p class="has-line-data" data-line-start="243" data-line-end="244">As a novice writer, I’m eager to
+                            learn and improve. Should you spot any errors, I warmly welcome your insights in the comments
+                            below. Your feedback is invaluable to me.</p>
+                        <p class="has-line-data" data-line-start="245" data-line-end="247">My code:<br>
+                            <a href="https://github.com/vivekvohra/filter">https://github.com/vivekvohra/filter</a>
+                        </p>
+                        <p class="has-line-data" data-line-start="248" data-line-end="250">Credits &amp; References<br>
+                            Harvard University</p>
+                    </div><!-- /.blog-post -->
+
+                    <nav class="blog-pagination">
+                        <a class="btn btn-outline-primary" href="/filter_c">Previous</a>
+                        <a class="btn btn-outline-secondary" href="#">Next</a>
+                    </nav>
+
+                </div><!-- /.blog-main -->
+
+                <aside class="col-md-4 blog-sidebar">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="font-italic">About</h4>
+                        <p class="mb-0">I am a pre-final year student at TIET. I am passionate about using technology to
+                            solve real-world problems. I have experience programming in Python and C++.</p>
+                        <p><strong>Location</strong> : India</p>
+                        <p><strong>Education</strong> : TIET</p>
+                        <p><strong>Pronouns</strong> : He/Him</p>
+                        <p><strong>Email</strong> : vivekvohra1102@gmail.com</p>
+                        <p><strong>Date</strong> : May, 2024</p>
+
+
+
+
+
+
+                    </div>
+
+
+                    <div class="p-4">
+                        <h4 class="font-italic">Follow me</h4>
+                        <ol class="list-unstyled">
+                            <li><a href="https://github.com/vivekvohra" target="_balnk">GitHub</a></li>
+                            <li><a href="https://x.com/VivekVohra1102" target="_balnk">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/vivek-vohra-11316a24a/" target="_balnk">Linkedin</a></li>
+                            <li><a href="https://codeforces.com/profile/vvk_1102" target="_balnk">Codeforces</a></li>
+                            <li><a href="https://leetcode.com/u/vivekvohra/" target="_balnk">Leetcode</a></li>
+                            <li><a href="https://dev.to/vivekvohra" target="_balnk">Dev</a></li>
+                        </ol>
+                    </div>
+                </aside><!-- /.blog-sidebar -->
+
+            </div><!-- /.row -->
+
+        </main>
+
+
+
+
+        <!-- footer -->
+        <footer class="container">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>© 2024-2030 iPlus Code </p>
+        </footer>
+
+
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+    </body>
+
+</html>
